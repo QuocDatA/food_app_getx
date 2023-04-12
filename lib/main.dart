@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_getx/src/auth/sign_in_screen.dart';
+import 'package:food_app_getx/src/pages/auth/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.white.withAlpha(180),
       ),
       home: const SignInScreen(),
     );
