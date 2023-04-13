@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_getx/src/pages/cart/cart_tab.dart';
+import 'package:food_app_getx/src/pages/order/order_tab.dart';
 import 'package:food_app_getx/src/pages/profile/profile_tab.dart';
 
 import '../home/home_tab.dart';
@@ -12,7 +13,6 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
-
   int currentIndex = 0;
   final pageController = PageController();
 
@@ -20,15 +20,9 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          const HomeTab(),
-          const CartTab(),
-          Container(color: Colors.blue),
-          const ProfileTab()
-        ]
-      ),
+          controller: pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: const [HomeTab(), CartTab(), OrderTab(), ProfileTab()]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
@@ -36,7 +30,7 @@ class _BaseScreenState extends State<BaseScreen> {
             currentIndex = index;
             pageController.jumpToPage(index);
           });
-        } ,
+        },
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.green,
         selectedItemColor: Colors.white,

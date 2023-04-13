@@ -1,4 +1,5 @@
 import 'package:food_app_getx/src/models/cart_item_models.dart';
+import 'package:food_app_getx/src/models/order_model.dart';
 import 'package:food_app_getx/src/models/user_models.dart';
 
 import '../models/item_models.dart';
@@ -81,3 +82,32 @@ UserModel user = UserModel(
   phone: '0800209200', 
   password: ''
 );
+
+List<OrderModel> orders = [
+  OrderModel(
+    id: 'asdsdsasdasaf', 
+    createDateTime: DateTime.parse('2024-04-04 10:00:10.458'), 
+    copyAndPaste: 'copyAndPaste', 
+    items: [
+      CartItemModels(items: apple, quantity: 2),
+      CartItemModels(items: mango, quantity: 2)
+    ], 
+    overdueDateTime: DateTime.parse('2024-04-04 11:00:10.458'), 
+    status: 'pending_payment', 
+    total: 11.0
+  ),
+  OrderModel(
+    id: 'asdsdsasdasaf', 
+    createDateTime: DateTime.parse('2024-04-04 10:00:10.458'), 
+    copyAndPaste: 'copyAndPaste', 
+    items: [
+      CartItemModels(items: apple, quantity: 2),
+      CartItemModels(items: mango, quantity: 2)
+    ], 
+    overdueDateTime: DateTime.parse('2024-04-04 11:00:10.458'), 
+    status: 'delivered', 
+    total: 11.0
+  )
+
+  
+];
