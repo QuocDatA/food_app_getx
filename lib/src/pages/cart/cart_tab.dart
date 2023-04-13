@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app_getx/src/config/custom_colors.dart';
 import 'package:food_app_getx/src/models/cart_item_models.dart';
 import 'package:food_app_getx/src/pages/cart/components/cart_tile.dart';
+import 'package:food_app_getx/src/pages/common_widget/payment_dialog.dart';
 import 'package:food_app_getx/src/services/utils.services.dart';
 import 'package:food_app_getx/src/config/app_data.dart' as app_data;
 
@@ -100,7 +101,15 @@ class _CartTabState extends State<CartTab> {
                       ),
                       onPressed: () async{
                         bool? result = await showOrderConfirmation();
-                        print(result);
+                        if (result ?? false){
+                          // ignore: use_build_context_synchronously
+                          showDialog(
+                            context: context, 
+                            builder: (_) {
+                              return PaymentDialog(order: app_data.orders.first);
+                            }
+                          );
+                        }
                       }, 
                       child: const Text(
                         'Confirm Order',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_getx/src/models/cart_item_models.dart';
 import 'package:food_app_getx/src/models/order_model.dart';
+import 'package:food_app_getx/src/pages/common_widget/payment_dialog.dart';
 import 'package:food_app_getx/src/pages/order/components/order_status_widget.dart';
 import 'package:food_app_getx/src/services/utils.services.dart';
 
@@ -84,7 +85,14 @@ class OrderTile extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context, 
+                      builder: (_) {
+                        return PaymentDialog(order: orders,);
+                      }
+                    );
+                  },
                   icon: Image.asset(
                     'assets/app_images/pix.png',
                     height: 20,
