@@ -40,6 +40,9 @@ dependencies:
   intl: ^0.18.0
   qr_flutter: ^4.0.0
   add_to_cart_animation: ^0.0.7
+  fluttertoast: ^8.2.1
+  flutter_launcher_icons: ^0.13.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,10 @@ flutter:
     - assets/fruits/
     - assets/app_images/
   #   - images/a_dot_ham.jpeg
+flutter_icons:
+    android: true
+    ios: true
+    image_path: "assets/app_images/app_icon.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -94,3 +101,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  
