@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app_getx/src/config/custom_text_field.dart';
+import 'package:food_app_getx/src/pages/common_widget/custom_text_field.dart';
 import 'package:food_app_getx/src/config/app_data.dart' as app_data;
 
 class ProfileTab extends StatefulWidget {

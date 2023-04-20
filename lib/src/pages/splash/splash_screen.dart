@@ -1,26 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_app_getx/src/config/custom_colors.dart';
-import 'package:food_app_getx/src/pages/auth/sign_in_screen.dart';
 import 'package:food_app_getx/src/pages/common_widget/app_name_widget.dart';
-
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (c) {
-        return const SignInScreen();
-      }));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 10,
             ),
-            CircularProgressIndicator()
+            CircularProgressIndicator(
+              color: Colors.white,
+            )
           ],
         ),
       ),
