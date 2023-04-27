@@ -6,10 +6,12 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:food_app_getx/src/config/custom_colors.dart';
 import 'package:food_app_getx/src/config/app_data.dart' as app_data;
-import 'package:food_app_getx/src/pages/auth/components/item_tile.dart';
+import 'package:food_app_getx/src/pages/home/view/components/item_tile.dart';
 import 'package:food_app_getx/src/pages/common_widget/custom_shimmer.dart';
-import '../auth/components/categories_tile.dart';
-import '../common_widget/app_name_widget.dart';
+import 'package:food_app_getx/src/pages/home/controller/home_controller.dart';
+import 'package:get/get.dart';
+import 'components/categories_tile.dart';
+import '../../common_widget/app_name_widget.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -19,7 +21,6 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  String selectedCategory = 'Fruits';
 
   GlobalKey<CartIconKey> globalKeyCartItems = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
@@ -28,20 +29,10 @@ class _HomeTabState extends State<HomeTab> {
     runAddToCartAnimation(gkImage);
   }
 
-  bool isLoading = true;
-
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(
-      const Duration(seconds: 3),
-      (){
-        setState(() {
-          isLoading = false;
-        });
-      }
-    );
   }
 
   @override
@@ -117,26 +108,25 @@ class _HomeTabState extends State<HomeTab> {
             ),
 
             //Categories
-            Container(
+            GetBuilder<HomeController>(builder: (controller) {
+              return Container(
               padding: const EdgeInsets.only(left: 25),
               child: SizedBox(
                 height: 40,
-                child: !isLoading ? ListView.separated(
+                child: !controller.isCategoryLoading ? ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (_, index) {
                     return CategoriesTile(
                       onPressed: () {
-                        setState(() {
-                          selectedCategory = app_data.categories[index];
-                        });
+                        controller.selectedCategory(controller.allCategories[index]);
                       },
-                      category: app_data.categories[index],
+                      category: controller.allCategories[index].title,
                       isSelected:
-                          app_data.categories[index] == selectedCategory,
+                          controller.allCategories[index] == controller.currentCategory,
                     );
                   },
                   separatorBuilder: (_, index) => const SizedBox(width: 10),
-                  itemCount: app_data.categories.length,
+                  itemCount: controller.allCategories.length,
                 ) : ListView(
                   scrollDirection: Axis.horizontal,
                   children: List.generate(10, (index) => Container(
@@ -150,11 +140,13 @@ class _HomeTabState extends State<HomeTab> {
                   )),
                 ),
               ),
-            ),
+            );
+            }),
 
             //Grid
-            Expanded(
-              child: !isLoading
+            GetBuilder<HomeController>(builder: (controller) {
+              return Expanded(
+              child: !controller.isProductLoading
                   ? GridView.builder(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                       physics: const BouncingScrollPhysics(),
@@ -165,11 +157,16 @@ class _HomeTabState extends State<HomeTab> {
                         crossAxisSpacing: 10,
                         childAspectRatio: 9 / 11.5,
                       ),
-                      itemCount: app_data.items.length,
+                      itemCount: controller.allProducts.length,
                       itemBuilder: (_, index) {
+
+                        if(((index + 1) == controller.allProducts.length) && !controller.isLastPage) {
+                          controller.loadMoreProducts();
+                        }
+
                         return ItemTile(
                           cartAnimationMethod: itemSelectedCartAnimation,
-                          item: app_data.items[index],
+                          item: controller.allProducts[index],
                         );
                       })
                   : GridView.count(
@@ -186,7 +183,8 @@ class _HomeTabState extends State<HomeTab> {
                         )
                       ),
                     ),
-            )
+            );
+            })
           ],
         ),
       ),

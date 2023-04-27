@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_app_getx/src/pages/auth/controller/auth_controller.dart';
 import 'package:food_app_getx/src/pages/common_widget/custom_text_field.dart';
 import 'package:food_app_getx/src/config/app_data.dart' as app_data;
+import 'package:get/get.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -10,12 +12,18 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+
+  final authController = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
+        actions: [IconButton(onPressed: () {
+          authController.signOut();
+        }, 
+        icon: const Icon(Icons.logout))],
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),

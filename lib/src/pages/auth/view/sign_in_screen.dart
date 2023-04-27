@@ -83,7 +83,7 @@ class SignInScreen extends StatelessWidget {
                         icon: Icons.lock,
                         label: "Password",
                         isSecret: true,
-                        validator: phoneValidator
+                        validator: passwordValidator
                       ),
 
                       //Button Login

@@ -33,11 +33,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   bool isObscure = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   isObscure = widget.isSecret;
-  // }
+  @override
+  void initState() {
+    super.initState();
+    isObscure = widget.isSecret;
+  }
 
   @override
   Widget build(BuildContext context) {

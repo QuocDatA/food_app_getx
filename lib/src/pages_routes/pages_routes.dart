@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../pages/auth/view/sign_in_screen.dart';
 import '../pages/auth/view/sign_up_screen.dart';
+import '../pages/home/binding/home_binding.dart';
 
 class AppPages{
   AppPages._();
@@ -25,6 +26,9 @@ class AppPages{
     GetPage(
       name: PagesRoutes.baseRoute,
       page: () => const BaseScreen(),
+      bindings: [
+        HomeBinding(),
+      ]
     )
 
   ];

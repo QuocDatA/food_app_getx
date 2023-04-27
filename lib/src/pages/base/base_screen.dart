@@ -3,7 +3,7 @@ import 'package:food_app_getx/src/pages/cart/cart_tab.dart';
 import 'package:food_app_getx/src/pages/order/order_tab.dart';
 import 'package:food_app_getx/src/pages/profile/profile_tab.dart';
 
-import '../home/home_tab.dart';
+import '../home/view/home_tab.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({Key? key}) : super(key: key);
